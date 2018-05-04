@@ -5,6 +5,7 @@ pipeline {
         maven 'Maven 3.5.2'
     }
     stages {
+
         stage ('Initialize') {
             steps {
                 sh '''
@@ -16,11 +17,11 @@ pipeline {
 
         stage ('Build') {
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true clean install'.
+                sh 'mvn -Dmaven.test.failure.ignore=true clean install'
             }
             post {
                 success {
-                    junit 'target/surefire-reports/*.xml'.
+                    junit 'target/surefire-reports/*.xml'
 
                     jacoco classPattern: '**/target/classes',
                            execPattern: '**/target/coverage-reports/jacoco-ut.exec',
